@@ -1,0 +1,218 @@
+---
+format: 
+  revealjs:
+    incremental: true
+    slide-number: true
+    progress: true
+    code-line-numbers: true
+    code-copy: true
+    theme: 
+      - midquarter-survey.scss
+    embed-resources: true
+---
+
+##  {#title-slide data-menu-title="Title Slide" background="#cad2c5"}
+
+[MEDS Mid-quarter Survey Results]{.custom-title}
+
+<hr class="hr-off-white">
+
+[Winter Quarter]{.custom-subtitle}
+
+
+##  {#Survey-Participation data-menu-title="Survey Participation"}
+
+[Participation]{.slide-title}
+
+<hr>
+
+-   11/30 MEDS Students completed the survey
+-   No non MEDS students completed the survey
+-
+
+
+##  {#ML-results data-menu-title="Machine Learning Couse Results"}
+
+[EDS 232: Machine Learning]{.slide-title}
+
+<hr>
+
+```{r}
+#| eval: true
+#| echo: false
+library(ggplot2)
+library(tidyverse)
+library(ggthemes)
+library(cowplot)
+survey_results <- read.csv(here::here("mid-quarter-survey-winter.csv"))
+colnames(survey_results) <- c("date", "Meds_student_y/n", "eds232_enrolled", "eds232_pace", "eds232_homeworks", "eds232_discussion", "eds232_textbook", "eds232_other", "eds240_enrolled", "eds240_lecture", "eds240_discussion", "eds240_homework", "eds240_other", "eds241_enrolled", "eds241_lecture", "eds241_homeworks", "eds241_other", "capstone_enrolled", "capstone_feeling", "capstone_speakers", "capstone_comments", "additional_feedback")
+
+```
+
+
+```{r}
+
+
+eds232_pace <- ggplot(data = survey_results %>% 
+         mutate(eds232_pace = factor(eds232_pace, levels = c(1, 2, 3), labels = c("Too slow", "Just right", "Too fast"))), 
+       aes(x = eds232_pace)) + 
+  geom_bar(width = 1/3, fill = "#84a98c") + 
+  labs(x = element_blank(), y = "Number of Responses", title = "Lecture Pace") +
+  scale_x_discrete(drop =FALSE)+ 
+  theme_fivethirtyeight()
+
+eds232_discussion <- ggplot(data = survey_results %>% 
+         mutate(eds232_discussion = factor(eds232_discussion, levels = c(1, 2, 3), labels = c("Not useful", "Useful", "Very useful"))), 
+       aes(x = eds232_discussion)) + 
+  geom_bar(width = 1/3, fill = "#84a98c") + 
+  labs(x = element_blank(), y = "Number of Responses", title = "Discussion") +
+  scale_x_discrete(drop =FALSE)+ 
+  theme_fivethirtyeight()
+
+
+plot_grid(eds232_pace , eds232_discussion , nrow = 2, scale = 0.95)
+
+```
+
+##  {#ML-results data-menu-title="Machine Learning Couse Results"}
+
+[EDS 232: Machine Learning]{.slide-title}
+<hr>
+```{r}
+
+#| eval: true
+#| echo: false
+
+eds232_homeworks <- ggplot(data = survey_results %>% 
+         mutate(eds232_homeworks = factor(eds232_homeworks, levels = c(1, 2, 3), labels = c("Too easy", "Just right", "Too hard"))), 
+       aes(x = eds232_homeworks)) + 
+  geom_bar(width = 1/3, fill = "#84a98c") + 
+  labs(x = element_blank(), y = "Number of Responses", title = "Homework Difficulty") +
+  scale_x_discrete(drop =FALSE)+ 
+  theme_fivethirtyeight()
+
+
+
+
+eds232_textbook <- ggplot(data = survey_results %>% 
+         mutate(eds232_textbook = factor(eds232_textbook, levels = c(1, 2, 3), labels = c("Not useful", "Useful", "Very useful"))), 
+       aes(x = eds232_textbook)) + 
+  geom_bar(width = 1/3, fill = "#84a98c") + 
+  labs(x = element_blank(), y = "Number of Responses", title = "Textbook Usefulness") +
+  scale_x_discrete(drop =FALSE)+ 
+  theme_fivethirtyeight()
+
+
+plot_grid(eds232_homeworks , eds232_textbook , nrow = 2, scale = 0.95)
+
+```
+
+
+##  {#ML-results data-menu-title="Machine Learning Couse Results"}
+
+[EDS 232: Machine Learning]{.slide-title}
+
+<hr>
+
+**Other Comments:**
+
+##  {#Policy-results data-menu-title="Policy Evaluation Course Results"}
+
+[EDS 241: Environmental Policy Evaluation ]{.slide-title}
+
+<hr>
+
+```{r}
+eds241_lecture <- ggplot(data = survey_results %>% 
+         mutate(eds241_lecture = factor(eds241_lecture, levels = c(1, 2, 3), labels = c("Too slow", "Just right", "Too fast"))), 
+       aes(x = eds241_lecture)) + 
+  geom_bar(width = 1/3, fill = "#84a98c") + 
+  labs(x = element_blank(), y = "Number of Responses", title = "Lecture Pace") +
+  scale_x_discrete(drop =FALSE)+ 
+  theme_fivethirtyeight()
+
+eds241_homeworks <- ggplot(data = survey_results %>% 
+         mutate(eds241_homeworks = factor(eds241_homeworks, levels = c(1, 2, 3), labels = c("Too easy", "just right", "Too hard"))), 
+       aes(x = eds241_homeworks)) + 
+  geom_bar(width = 1/3, fill = "#84a98c") + 
+  labs(x = element_blank(), y = "Number of Responses", title = "Homework Difficulty") +
+  scale_x_discrete(drop =FALSE)+ 
+  theme_fivethirtyeight()
+
+
+plot_grid(eds241_lecture , eds241_homeworks , nrow = 2, scale = 0.95)
+
+```
+
+##  {#Policy-results data-menu-title="Policy Evaluation Course Results"}
+
+[EDS 241: Environmental Policy Evaluation ]{.slide-title}
+
+<hr>
+
+**Other comments:**
+
+
+##  {#Data-Viz-results data-menu-title="Data Visualization Course Results"}
+
+[EDS 240: Data Visualization and Communication ]{.slide-title}
+
+<hr>
+
+
+```{r}
+eds240_lecture <- ggplot(data = survey_results %>% 
+         mutate(eds240_lecture = factor(eds241_lecture, levels = c(1, 2, 3), labels = c("Too slow", "Just right", "Too fast"))), 
+       aes(x = eds240_lecture)) + 
+  geom_bar(width = 1/3, fill = "#84a98c") + 
+  labs(x = element_blank(), y = "Number of Responses", title = "Lecture Pace") +
+  scale_x_discrete(drop =FALSE)+ 
+  theme_fivethirtyeight()
+
+eds240_discussion <- ggplot(data = survey_results %>% 
+         mutate(eds240_discussion = factor(eds240_discussion, levels = c(1, 2, 3), labels = c("Not useful", "Useful", "Very useful"))), 
+       aes(x = eds240_discussion)) + 
+  geom_bar(width = 1/3, fill = "#84a98c") + 
+  labs(x = element_blank(), y = "Number of Responses", title = "Discussion") +
+  scale_x_discrete(drop =FALSE)+ 
+  theme_fivethirtyeight()
+
+
+
+plot_grid(eds240_lecture , eds240_discussion , nrow = 2, scale = 0.95)
+```
+
+##  {#Data-Viz-results data-menu-title="Data Visualization Course Results"}
+
+[EDS 240: Data Visualization and Communication ]{.slide-title}
+
+<hr>
+
+
+```{r}
+eds240_homeworks <- ggplot(data = survey_results %>% 
+         mutate(eds240_homework = factor(eds240_homework, levels = c(1, 2, 3), labels = c("Too easy", "just right", "Too hard"))), 
+       aes(x = eds240_homework)) + 
+  geom_bar(width = 1/3, fill = "#84a98c") + 
+  labs(x = element_blank(), y = "Number of Responses", title = "Homework Difficulty") +
+  scale_x_discrete(drop =FALSE)+ 
+  theme_fivethirtyeight()
+
+
+eds240_homeworks
+
+```
+
+
+
+##  {#other-notes data-menu-title="Other Notes"}
+
+[Other Notes!]{.slide-title}
+
+<hr>
+
+
+
+##  {#final-slide data-menu-title="Thanks!" background="#cad2c5"}
+
+[Thank you for listening!]{.custom-title}
