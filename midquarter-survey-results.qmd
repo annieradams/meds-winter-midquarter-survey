@@ -28,7 +28,6 @@ format:
 
 -   11/30 MEDS Students completed the survey
 -   No non MEDS students completed the survey
--
 
 
 ##  {#ML-results data-menu-title="Machine Learning Couse Results"}
@@ -48,6 +47,28 @@ survey_results <- read.csv(here::here("mid-quarter-survey-winter.csv"))
 colnames(survey_results) <- c("date", "Meds_student_y/n", "eds232_enrolled", "eds232_pace", "eds232_homeworks", "eds232_discussion", "eds232_textbook", "eds232_other", "eds240_enrolled", "eds240_lecture", "eds240_discussion", "eds240_homework", "eds240_other", "eds241_enrolled", "eds241_lecture", "eds241_homeworks", "eds241_other", "capstone_enrolled", "capstone_feeling", "capstone_speakers", "capstone_comments", "additional_feedback")
 
 ```
+
+```{r}
+eds232_pace <- ggplot(data = survey_results %>% 
+         mutate(eds232_pace = factor(eds232_pace, levels = c(1, 2, 3), labels = c("Too slow", "Just right", "Too fast"))), 
+       aes(x = eds232_pace)) + 
+  geom_bar(width = 1/3, fill = "#84a98c") + 
+  labs(x = element_blank(), y = "Number of Responses", title = "Lecture Pace") +
+  scale_x_discrete(drop =FALSE)+ 
+  theme_fivethirtyeight()
+eds232_discussion <- ggplot(data = survey_results %>% 
+         mutate(eds232_discussion = factor(eds232_discussion, levels = c(1, 2, 3), labels = c("Not useful", "Useful", "Very useful"))), 
+       aes(x = eds232_discussion)) + 
+  geom_bar(width = 1/3, fill = "#84a98c") + 
+  labs(x = element_blank(), y = "Number of Responses", title = "Discussion") +
+  scale_x_discrete(drop =FALSE)+ 
+  theme_fivethirtyeight()
+plot_grid(eds232_pace , eds232_discussion , nrow = 2, scale = 0.95)
+
+```
+
+
+
 
 
 
@@ -206,7 +227,9 @@ plot_grid(capstone_feeling, capstone_speakers, nrow = 2, scale = 0.95)
 - General streamlining of best practices 
   - Naming convention for dataframes
   - Commenting code
-  - 
+  - Data visualization expectation
+  - Copying/ pasting of assignment questions
+  
 
 ##  {#final-slide data-menu-title="Thanks!" background="#cad2c5"}
 
