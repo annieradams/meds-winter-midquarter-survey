@@ -48,7 +48,7 @@ colnames(survey_results) <- c("date", "Meds_student_y/n", "eds232_enrolled", "ed
 
 ```
 
-```{r}
+```{r fig.width=12, fig.height=5}
 eds232_pace <- ggplot(data = survey_results %>% 
          mutate(eds232_pace = factor(eds232_pace, levels = c(1, 2, 3), labels = c("Too slow", "Just right", "Too fast"))), 
        aes(x = eds232_pace)) + 
@@ -76,7 +76,7 @@ plot_grid(eds232_pace , eds232_discussion , nrow = 2, scale = 0.95)
 
 [EDS 232: Machine Learning]{.slide-title}
 <hr>
-```{r}
+```{r fig.width=12, fig.height=5}
 
 #| eval: true
 #| echo: false
@@ -114,25 +114,25 @@ plot_grid(eds232_homeworks , eds232_textbook , nrow = 2, scale = 0.95)
 
 <hr>
 
-```{r}
+```{r fig.width=12, fig.height=5}
 eds241_lecture <- ggplot(data = survey_results %>% 
          mutate(eds241_lecture = factor(eds241_lecture, levels = c(1, 2, 3), labels = c("Too slow", "Just right", "Too fast"))), 
        aes(x = eds241_lecture)) + 
   geom_bar(width = 1/3, fill = "#84a98c") + 
   labs(x = element_blank(), y = "Number of Responses", title = "Lecture Pace") +
   scale_x_discrete(drop =FALSE)+ 
-  theme_fivethirtyeight()
+  theme_fivethirtyeight() 
+
 
 eds241_homeworks <- ggplot(data = survey_results %>% 
-         mutate(eds241_homeworks = factor(eds241_homeworks, levels = c(1, 2, 3), labels = c("Too easy", "just right", "Too hard"))), 
+         mutate(eds241_homeworks = factor(eds241_homeworks, levels = c(1, 2, 3), labels = c("Too easy", "Just right", "Too hard"))), 
        aes(x = eds241_homeworks)) + 
   geom_bar(width = 1/3, fill = "#84a98c") + 
   labs(x = element_blank(), y = "Number of Responses", title = "Homework Difficulty") +
   scale_x_discrete(drop =FALSE)+ 
-  theme_fivethirtyeight()
+  theme_fivethirtyeight() 
 
-
-plot_grid(eds241_lecture , eds241_homeworks , nrow = 2, scale = 0.95)
+plot_grid(eds241_lecture , eds241_homeworks , nrow = 2, scale = .95)
 
 ```
 
@@ -145,7 +145,7 @@ plot_grid(eds241_lecture , eds241_homeworks , nrow = 2, scale = 0.95)
 <hr>
 
 
-```{r}
+```{r fig.width=12, fig.height=5}
 eds240_lecture <- ggplot(data = survey_results %>% 
          mutate(eds240_lecture = factor(eds241_lecture, levels = c(1, 2, 3), labels = c("Too slow", "Just right", "Too fast"))), 
        aes(x = eds240_lecture)) + 
@@ -174,7 +174,7 @@ plot_grid(eds240_lecture , eds240_discussion , nrow = 2, scale = 0.95)
 <hr>
 
 
-```{r}
+```{r fig.width=12, fig.height=5}
 eds240_homeworks <- ggplot(data = survey_results %>% 
          mutate(eds240_homework = factor(eds240_homework, levels = c(1, 2, 3), labels = c("Too easy", "just right", "Too hard"))), 
        aes(x = eds240_homework)) + 
@@ -194,7 +194,7 @@ eds240_homeworks
 <hr>
 
 
-```{r}
+```{r fig.width=12, fig.height=5}
 capstone_feeling <- ggplot(data = survey_results %>% 
          mutate(capstone_feelings = factor(capstone_feeling, levels = c(1, 2, 3, 4, 5), labels = c("1", "2", "3", "4", "5"))), 
        aes(x = capstone_feelings)) + 
