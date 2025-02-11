@@ -184,7 +184,9 @@ eds240_homeworks <- ggplot(data = survey_results %>%
   theme_fivethirtyeight()
 
 
-eds240_homeworks
+
+plot_grid(eds240_homeworks, nrow = 1, scale = 0.95)
+
 
 ```
 
@@ -220,13 +222,12 @@ plot_grid(capstone_feeling, capstone_speakers, nrow = 2, scale = 0.95)
 
 <hr>
 
-- Standard of markdown & comments
 - Git conflicts 
 - Student engagement on Tuesdays vs Thursdays
 - Engagement with research papers/ case studies
 - General streamlining of best practices 
+  - Standardizing markdown & comments
   - Naming convention for dataframes
-  - Commenting code
   - Data visualization expectation
   - Copying/ pasting of assignment questions
   
